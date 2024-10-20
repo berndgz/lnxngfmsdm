@@ -29,7 +29,7 @@ download archive file ⮕ delete old files ⮕ install new files ⮕ backup arch
 1. Download the [__lnxngfmsdm-x86_64.AppImage__](https://github.com/berndgz/lnxngfmsdm/releases) file and make it executable and run it ([AppImage Quickstart](https://docs.appimage.org/introduction/quickstart.html)).
 2. `Add Addon` to the `Addon List` and enter the corresponding addon data, please refer to the related screenshots and don't forget to save.
 3. Enter LOGIN credentials for the [Navigraph Downloads](https://navigraph.com/downloads) website under `Settings` to use the automated `Download` feature and don't forget to save.
-4. Press the `Download` button and wait until the process has finished.
+4. Press the `Download` button and wait until the process has finished. __Do not click anywhere else!!!__
 5. Press the `Update` button and wait until the process has finished.
 6. Done, all addons in the `Addon List` have been updated to the current displayed version and the downloads are backupd.
 
