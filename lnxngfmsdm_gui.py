@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 # Name:        LNX NG FMS Data Manager
 # Description: Navigraph FMS Data Manager alternative for Linux to manage AIRAC cycle databases
-# Version:     1.0.0
+# Version:     1.0.1
 # Requirement: Google Chrome Webbrowser to use the 'Download' feature via included Selenium WebDriver
 # Usage:       Make the AppImage executable and run it
 # -----------------------------------------------------------------------------
@@ -97,12 +97,14 @@ class AddonWidget(ttk.Frame):
         self.name_entry = ttk.Entry(self, width=30)
         self.name_entry.insert(0, addon.name)
         self.name_entry.bind("<KeyRelease>", self.entry_changed)
+        self.name_entry.bind("<Control-a>", self.select_all)
         self.name_entry.grid(row=0, column=6, sticky=tk.NS, padx=0, pady=5)
         # ---- ARCHIVE ----
         ttk.Label(self, text="ARCHIVE:", style="Label.TLabel").grid(row=0, column=7, sticky=tk.NS)
         self.archive_entry = ttk.Entry(self, width=40)
         self.archive_entry.insert(0, addon.archive)
         self.archive_entry.bind("<KeyRelease>", self.entry_changed)
+        self.archive_entry.bind("<Control-a>", self.select_all)
         self.archive_entry.grid(row=0, column=8, sticky=tk.NS, padx=0, pady=5)
         self.archive_btn = ttk.Button(self, image=archive_icon, command=lambda: self.archive_btn_pressed(addon))
         self.archive_btn.grid(row=0, column=9, sticky=tk.NS, padx=0, pady=5)
@@ -111,6 +113,7 @@ class AddonWidget(ttk.Frame):
         self.path_entry = ttk.Entry(self, width=50)
         self.path_entry.insert(0, addon.path)
         self.path_entry.bind("<KeyRelease>", self.entry_changed)
+        self.path_entry.bind("<Control-a>", self.select_all)
         self.path_entry.grid(row=0, column=11, sticky=tk.NS, padx=0, pady=5)
         self.path_btn = ttk.Button(self, image=folder_icon, command=lambda: self.path_btn_pressed(addon))
         self.path_btn.grid(row=0, column=12, sticky=tk.NS, padx=0, pady=5)
@@ -190,6 +193,17 @@ class AddonWidget(ttk.Frame):
             core.delete_addon(addon.uid)
             refresh()
 
+    # event parameter from event object is mandatory
+    def select_all(self, event):
+        print("select_all", event)
+        self.save_btn.config(state=tk.NORMAL)
+        # select text
+        event.widget.select_range(0, 'end')
+        # move cursor to the end
+        event.widget.icursor('end')
+        # stop propagation
+        return 'break'
+
 
 class SettingsWidget(ttk.Frame):
     def __init__(self, parent):
@@ -215,18 +229,21 @@ class SettingsWidget(ttk.Frame):
         self.username_entry = ttk.Entry(self, width=30)
         self.username_entry.insert(0, core.Addon.username)
         self.username_entry.bind("<KeyRelease>", self.entry_changed)
+        self.username_entry.bind("<Control-a>", self.select_all)
         self.username_entry.grid(row=0, column=6, sticky=tk.NS, padx=0, pady=5)
         # ---- PASSWORD ----
         ttk.Label(self, text="PASSWORD:", style="Label.TLabel").grid(row=0, column=7, sticky=tk.NS)
         self.password_entry = ttk.Entry(self, width=40, show="*")
         self.password_entry.insert(0, base64.b64decode(core.Addon.password).decode("utf-8"))
         self.password_entry.bind("<KeyRelease>", self.entry_changed)
+        self.password_entry.bind("<Control-a>", self.select_all)
         self.password_entry.grid(row=0, column=8, sticky=tk.NS, padx=0, pady=5)
         # ---- DOWNLOADS ----
         ttk.Label(self, text="DOWNLOADS:", style="Label.TLabel").grid(row=0, column=10, sticky=tk.NS)
         self.downloads_entry = ttk.Entry(self, width=50)
         self.downloads_entry.insert(0, core.Addon.download)
         self.downloads_entry.bind("<KeyRelease>", self.entry_changed)
+        self.downloads_entry.bind("<Control-a>", self.select_all)
         self.downloads_entry.grid(row=0, column=11, sticky=tk.NS, padx=0, pady=5)
         self.downloads_btn = ttk.Button(self, image=folder_icon, command=lambda: self.downloads_btn_pressed())
         self.downloads_btn.grid(row=0, column=12, sticky=tk.NS, padx=0, pady=5)
@@ -254,6 +271,17 @@ class SettingsWidget(ttk.Frame):
             core.get_settings()
         else:
             messagebox.showerror("Error", "Settings are missing value/s!")
+
+    # event parameter from event object is mandatory
+    def select_all(self, event):
+        print("select_all", event)
+        self.save_btn.config(state=tk.NORMAL)
+        # select text
+        event.widget.select_range(0, 'end')
+        # move cursor to the end
+        event.widget.icursor('end')
+        # stop propagation
+        return 'break'
 
 
 class ScrollableFrame(ttk.Frame):
@@ -328,7 +356,7 @@ def refresh():
 
 
 def about():
-    messagebox.showinfo("About", "lnxngfmsdm-x86_64\nver. 1.0.0\nⒸ 2024 github.com/berndgz")
+    messagebox.showinfo("About", "lnxngfmsdm-x86_64\nver. 1.0.1\nⒸ 2024 github.com/berndgz")
 
 
 def tk_exit():
