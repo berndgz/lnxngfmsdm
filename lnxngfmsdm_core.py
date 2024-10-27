@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 # Name:        LNX NG FMS Data Manager
 # Description: Navigraph FMS Data Manager alternative for Linux to manage AIRAC cycle databases
-# Version:     1.0.0
+# Version:     1.0.1
 # Requirement: Google Chrome Webbrowser to use the 'Download' feature via included Selenium WebDriver
 # Usage:       Make the AppImage executable and run it
 # -----------------------------------------------------------------------------
@@ -193,7 +193,8 @@ def download():
             "download.default_directory": Addon.download,
             "download.directory_upgrade": True,
             "profile.managed_default_content_settings.notifications": 2,
-            "excludeSwitches": ["disable-popup-blocking"]
+            "excludeSwitches": ["disable-popup-blocking"],
+            "download_bubble.partial_view_enabled": False
         }
         options = webdriver.ChromeOptions()
         options.add_experimental_option("prefs", prefs)
