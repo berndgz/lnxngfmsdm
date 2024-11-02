@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 # Name:        LNX NG FMS Data Manager
 # Description: Navigraph FMS Data Manager alternative for Linux to manage AIRAC cycle databases
-# Version:     1.0.1
+# Version:     1.0.2
 # Requirement: Google Chrome Webbrowser to use the 'Download' feature via included Selenium WebDriver
 # Usage:       Make the AppImage executable and run it
 # -----------------------------------------------------------------------------
@@ -17,6 +17,7 @@
 
 import base64
 import glob
+import json
 import os
 import shutil
 import time
@@ -24,6 +25,7 @@ import xml.dom.minidom
 import sqlite3
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.webdriver.common.action_chains import ActionChains
 
 home_directory = os.path.expanduser('~')
 addons = []
@@ -201,6 +203,7 @@ def download():
         options.add_argument("--start-maximized")
         options.add_argument("--disable-search-engine-choice-screen")
         driver = webdriver.Chrome(options=options)
+        actions = ActionChains(driver)
         # Step # | name | target | value
         # 1 | open | / |
         driver.get("https://navigraph.com/")
@@ -227,18 +230,21 @@ def download():
         # 11 | click | linkText=Downloads |
         driver.find_element(By.LINK_TEXT, "Downloads").click()
         # 12 | pause | 3000 |
-        time.sleep(3)
+        time.sleep(10)
 
         for addon in addons:
             # 13 | click | xpath=//*[contains(text(),'X-Plane 11 (11.50+)')]/../td[4]/*[contains(text(),'Linux')] |
-            driver.find_element(By.XPATH, "//*[contains(text(),\'" + addon.name + "\')]/../td[4]/*[contains(text(),\'" + addon.opsys + "\')]").click()
+            element = driver.find_element(By.XPATH, "//*[contains(text(),\'" + addon.name + "\')]/../td[4]/*[contains(text(),\'" + addon.opsys + "\')]")
+            print(addon.name + "/" + addon.opsys + " element.location => " + json.dumps(element.location))
+            actions.move_to_element(element).perform()
+            element.click()
             # 14 | pause | 10000 |
             time.sleep(10)
 
         # 19 | click | css=.sign-in |
         driver.find_element(By.XPATH, '//button[text()="Get Started"]').click()
         # 20 | pause | 3000 |
-        time.sleep(3)
+        time.sleep(5)
         # 21 | click | css=.logout:nth-child(1) |
         driver.find_element(By.LINK_TEXT, 'Sign out').click()
         # 22 | pause | 3000 |
