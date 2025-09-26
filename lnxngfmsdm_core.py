@@ -5,7 +5,7 @@
 # Requirement: Google Chrome Webbrowser to use the 'Download' feature via included Selenium WebDriver
 # Usage:       Make the AppImage executable and run it
 # -----------------------------------------------------------------------------
-# Copyright (c) 2024 github.com/berndgz
+# Copyright (c) 2024-2025 github.com/berndgz
 #
 # THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 # IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -242,7 +242,7 @@ def download():
             time.sleep(10)
 
         # 19 | click | css=.sign-in |
-        driver.find_element(By.XPATH, '//button[text()="Get Started"]').click()
+        driver.find_element(By.XPATH, '//a[@href="/account"]').click()
         # 20 | pause | 3000 |
         time.sleep(5)
         # 21 | click | css=.logout:nth-child(1) |

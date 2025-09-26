@@ -5,7 +5,7 @@
 # Requirement: Google Chrome Webbrowser to use the 'Download' feature via included Selenium WebDriver
 # Usage:       Make the AppImage executable and run it
 # -----------------------------------------------------------------------------
-# Copyright (c) 2024 github.com/berndgz
+# Copyright (c) 2024-2025 github.com/berndgz
 #
 # THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 # IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -356,7 +356,7 @@ def refresh():
 
 
 def about():
-    messagebox.showinfo("About", "lnxngfmsdm-x86_64\nver. 1.0.2\nⒸ 2024 github.com/berndgz")
+    messagebox.showinfo("About", "lnxngfmsdm-x86_64\nver. 1.0.3\nⒸ 2025 github.com/berndgz")
 
 
 def tk_exit():
