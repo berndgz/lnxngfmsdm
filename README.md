@@ -23,7 +23,7 @@ download archive file > delete old files > install new files > backup archive fi
 
 ### Requirements:
 
-* __Navigraph Data only__ or __Navigraph Unlimited Subscription__ to get access to the `Navigation Data`.
+* __Navigation Data subscription__ or __Navigraph Unlimited Subscription__ to get access to the `Navigation Data`.
 * __Google Chrome Webbrowser__ to use the automated `Download` feature via the included Selenium WebDriver.
 
 ### Usage:
