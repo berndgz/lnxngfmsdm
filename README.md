@@ -6,7 +6,7 @@
 
 ### Description:
 
-[Navigraph Downloads](https://navigraph.com/downloads) rarely support Linux, and there is no support at all for the `FMS Data Manager` and `Simlink`.
+[Navigraph Downloads](https://navigraph.com/downloads) rarely support `Linux`, and there is no support at all for the `FMS Data Manager` and `Simlink`.
 
 For Navigraph, the number of Linux users does not justify this investment and the company only provides [Manual Downloads](https://navigraph.com/downloads) for distribution of `Navigation Data`.
 
