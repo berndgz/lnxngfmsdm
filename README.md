@@ -12,7 +12,7 @@ For Navigraph, the number of Linux users does not justify this investment and th
 
 Updating the `Navigation Data` is a process that repeats every 28 days and can be quite annoying if you have to do it manually.
 
-This situation was the reason for me to develop a [__Linux NG FMS Data Manager__](https://github.com/berndgz/lnxngfmsdm) application to manage the AIRAC Cycle `Navigation Data` from Navigraph on __Linux__.
+This situation was the reason for me to develop a [__LNX NG FMS Data Manager__](https://github.com/berndgz/lnxngfmsdm) application to manage the AIRAC Cycle `Navigation Data` from __Navigraph__ on __Linux__.
 
 ### Addon update process:
 ```text
