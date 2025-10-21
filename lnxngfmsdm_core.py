@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 # Name:        LNX NG FMS Data Manager
 # Description: Navigraph FMS Data Manager alternative for Linux to manage AIRAC cycle databases
-# Version:     1.0.3
+# Version:     1.0.4
 # Requirement: Google Chrome Webbrowser to use the 'Download' feature via included Selenium WebDriver
 # Usage:       Make the AppImage executable and run it
 # -----------------------------------------------------------------------------
@@ -307,7 +307,10 @@ def del_index(addon):
         for node2 in mapping.getElementsByTagName("files"):
             file = path + get_directory(node2) + node2.getAttribute("destination")
             print("delete file '" + file + "' ...")
-            os.remove(file)
+            try:
+                os.remove(file)
+            except OSError as err:
+                print(err)
         os.remove(addon.idx)
 
 
